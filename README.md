@@ -34,7 +34,7 @@ pip install MailTMAPI
 ```python
 import asyncio
 
-from mailtm import MailTM
+from mailtmapi import MailTM
 
 
 async def main() -> None:

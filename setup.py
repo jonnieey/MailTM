@@ -3,7 +3,7 @@ from setuptools import setup
 setup(name='mailtmapi',
       version='1.1',
       description='Python API wrapper for mail.tm',
-      packages=['mailtm'],
+      packages=['mailtmapi'],
       author_email='coder@derkown.ru',
       zip_safe=False,
       url='https://github.com/prtolem/MailTM',
