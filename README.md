@@ -40,7 +40,7 @@ from mailtmapi import MailTM
 async def main() -> None:
     mailtm = MailTM()
     temp_mail = await mailtm.get_account()
-    print(temp_mail.address)
+    print(temp_mail)
 
 
 if __name__ == '__main__':
