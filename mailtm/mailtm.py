@@ -1,3 +1,4 @@
+import json
 import logging
 
 from aiohttp import ClientSession
@@ -21,11 +22,14 @@ class MailTM:
         """
         https://docs.mail.tm/#authentication
         """
-        payload = {
+        headers = {
+            "accept": "application/ld+json",
+            "Content-Type": "application/json"
+        }
+        response = await self.session.post(f"{self.API_URL}/token", data=json.dumps({
             "address": address,
             "password": password
-        }
-        response = await self.session.post(f"{self.API_URL}/token", json=payload)
+        }), headers=headers)
         logger.debug(f'Response for {self.API_URL}/token: {response}')
         if await validate_response(response):
             return Token(**(await response.json()))
@@ -71,7 +75,10 @@ class MailTM:
         response = await self.session.post(f"{self.API_URL}/accounts", json=payload)
         logger.debug(f'Response for {self.API_URL}/accounts: {response}')
         if await validate_response(response):
-            return Account(**(await response.json()))
+            response = await response.json()
+            token = await self.get_account_token(address=address, password=password)
+            response['token'] = token
+            return Account(**response)
         logger.debug(f'Error response for {self.API_URL}/accounts: {response}')
         raise MailTMInvalidResponse
 

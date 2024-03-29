@@ -25,19 +25,27 @@ Asynchronous API wrapper for https://docs.mail.tm/
   * [Set read message by id](#Set-read-message-by-id)
   * [Get message source by id](#Get-message-source-by-id)
 
+## Setup
+```shell
+pip install MailTMAPI
+```
+
 ## Usage example
 ```python
+import asyncio
+
 from mailtm import MailTM
 
 
-def main() -> None:
+async def main() -> None:
     mailtm = MailTM()
-    result = await mailtm.get_account_token(address="example", password="example")
-    print(result)
+    temp_mail = await mailtm.get_account()
+    print(temp_mail.address)
 
 
 if __name__ == '__main__':
-    main()
+    loop = asyncio.new_event_loop()
+    loop.run_until_complete(main())
 ```
 
 ## API methods
@@ -45,7 +53,7 @@ A list of all available methods with their parameters and response.
 
 ### Authentication
 ```python 
-get_account_token(address, password)
+await get_account_token(address, password)
 ```
 
 | Parameter   | Type     | Description                                  |

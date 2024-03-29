@@ -1,6 +1,11 @@
 from pydantic import BaseModel
 
 
+class Token(BaseModel):
+    id: str
+    token: str
+
+
 class Account(BaseModel):
     id: str
     address: str
@@ -10,8 +15,4 @@ class Account(BaseModel):
     isDeleted: bool
     createdAt: str
     updatedAt: str
-
-
-class Token(BaseModel):
-    id: str
-    token: str
+    token: Token
