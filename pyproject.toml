@@ -20,3 +20,6 @@ classifiers = [
 [project.urls]
 "Homepage" = "https://github.com/prtolem/MailTM"
 "Bug Tracker" = "https://github.com/prtolem/MailTM/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["mailtm"]

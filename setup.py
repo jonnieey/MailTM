@@ -8,6 +8,6 @@ setup(name='mailtmapi',
       zip_safe=False,
       url='https://github.com/prtolem/MailTM',
       install_requires=[
-            'aiohttp==3.8.1'
+            'aiohttp==3.8.1',
             'pydantic==1.10.2',
       ])
